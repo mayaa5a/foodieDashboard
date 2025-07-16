@@ -1,0 +1,12 @@
+.recipe-row {
+  display: grid;
+  grid-template-columns: 1.75fr 0.75fr 0.75fr 0.75fr;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid black;
+  color: black;
+}
+
+.cell {
+  text-align: left;
+  color:black;
+}
