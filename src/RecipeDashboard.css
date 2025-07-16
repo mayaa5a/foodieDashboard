@@ -3,7 +3,10 @@
   flex-direction: column;
   padding: 2rem;
   color: black;
-  font-family: 'Helvetica Neue', sans-serif;
+  font-family: "League Spartan", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: regular;
 }
 
 .dashboard-header, .dashboard-row {
@@ -26,6 +29,7 @@
 
 .dashboard-row {
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  
 }
 
 .stats-container {
@@ -80,6 +84,19 @@
   border-radius: 8px;
   border: none;
   font-size: 0.9rem;
+  background-color: rgba(252, 229, 220, 0.914);
+  width: 50px; 
+  margin-right: 10px;
+  margin-left: 4px;
+}
+
+#search-bar {
+  width: 200px;
+  background-color: rgba(252, 229, 220, 0.914);
+}
+
+#cuisine-dropdown {
+  width: 150px;
   background-color: rgba(252, 229, 220, 0.914);
 }
 

@@ -8,7 +8,7 @@ const App = () => {
     <div className="App">
       <header className="app-header">
         <h1>Foodie Dashboard</h1>
-        <h1>🍓🍣🍝🍤🍧</h1>
+        <h1 id="food-line">🍓🍣🍝🍤🍧</h1>
       </header>
 
       <RecipeDashboard />

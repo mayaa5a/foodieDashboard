@@ -85,6 +85,7 @@ const RecipeDashboard = () => {
 
         <div className="filter-bar">
   <input
+    id="search-bar"
     type="text"
     placeholder="Search recipes..."
     value={searchQuery}
@@ -92,7 +93,7 @@ const RecipeDashboard = () => {
   />
 
   <div>
-    <label>Calories:</label>
+    <label>Calorie Range:</label>
     <input
       type="number"
       value={calorieRange[0]}
@@ -108,7 +109,7 @@ const RecipeDashboard = () => {
   </div>
 
   <div>
-    <label>Prep Time (min):</label>
+    <label>Prep Time Range:</label>
     <input
       type="number"
       value={timeRange[0]}
@@ -123,7 +124,7 @@ const RecipeDashboard = () => {
     />
   </div>
 
-  <select value={selectedCuisine} onChange={(e) => setSelectedCuisine(e.target.value)}>
+  <select id="cuisine-dropdown" value={selectedCuisine} onChange={(e) => setSelectedCuisine(e.target.value)}>
   <option value="All">All Cuisines</option>
   <option value="African">African</option>
   <option value="Asian">Asian</option>
