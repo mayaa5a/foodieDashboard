@@ -1,0 +1,45 @@
+.sidebar {
+  width: 180px;
+  min-height: 100vh;
+  background-color: #ffe5ca;
+  padding: 1rem;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  font-family: 'League Spartan', sans-serif;
+}
+
+.sidebar h3 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar li {
+  margin-bottom: 1rem;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: #e2725b;
+  font-weight: 600;
+}
+
+.sidebar a:hover {
+  text-decoration: underline;
+}
+
+.layout {
+  display: flex;
+}
+
+.main-content {
+  margin-left: 200px; /* leave room for sidebar */
+  padding: 2rem;
+  width: 100%;
+}

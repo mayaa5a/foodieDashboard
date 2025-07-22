@@ -2,10 +2,15 @@ import React from 'react';
 import {useState, useEffect} from 'react';
 import RecipeCard from './RecipeCard.jsx';
 import './RecipeDashboard.css';
+import Sidebar from './Sidebar';
+import { Link } from 'react-router-dom';
+import RecipeDetail from './RecipeDetail.jsx';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 
 
 const RecipeDashboard = () => {
-
+  
+    console.log("RecipeDashboard is rendering");
     //recipe object array 
     const [recipes, setRecipe] = useState([]);
     const randomOffset = Math.floor(Math.random() * 100);
@@ -32,9 +37,9 @@ const RecipeDashboard = () => {
     useEffect(() => {
 
         const fetchRecipe = async () => {
-            const apiKey = '3a61e0e8041840c5a059ac08d817b59d';
+            const apiKey = '92607ffbdaf8491297ebe41bb2faa55c';
             const response = await fetch(
-                `https://api.spoonacular.com/recipes/complexSearch?query=pasta&number=20&offset=${randomOffset}&addRecipeNutrition=true&apiKey=${apiKey}`
+                `https://api.spoonacular.com/recipes/complexSearch?query=pasta&number=10&offset=${randomOffset}&addRecipeNutrition=true&apiKey=${apiKey}`
                 );
             const data = await response.json();
             setRecipe(data.results);      
@@ -57,11 +62,30 @@ const RecipeDashboard = () => {
     : 0;
 
 
+    //for chart data 
+    const cuisineData = [...new Set(recipes.flatMap(r => r.cuisines))].map((cuisine) => {
+  const filtered = recipes.filter(r => r.cuisines?.includes(cuisine));
+  const avgCalories = Math.round(
+    filtered.reduce((sum, r) =>
+      sum + (r.nutrition?.nutrients?.find(n => n.name === 'Calories')?.amount || 0), 0
+    ) / filtered.length
+  );
+  return { cuisine, avgCalories };
+});
+
+const prepTimeData = [
+  { range: '0-15', count: recipes.filter(r => r.readyInMinutes <= 15).length },
+  { range: '16-30', count: recipes.filter(r => r.readyInMinutes > 15 && r.readyInMinutes <= 30).length },
+  { range: '31-60', count: recipes.filter(r => r.readyInMinutes > 30 && r.readyInMinutes <= 60).length },
+  { range: '60+', count: recipes.filter(r => r.readyInMinutes > 60).length },
+];
+
 
 
 
     return(
-    
+    <div className="layout-container">
+       <Sidebar />
         
 
 
@@ -82,6 +106,32 @@ const RecipeDashboard = () => {
   </div>
 </div>
 
+
+  <div className="chart-container">
+    <p>Cuisine Data</p>
+    <ResponsiveContainer width="60%" height={300}>
+  <BarChart data={cuisineData}>
+    <XAxis dataKey="cuisine" />
+    <YAxis />
+    <Tooltip />
+    <Bar dataKey="avgCalories" fill="#FED8B1" />
+  </BarChart>
+</ResponsiveContainer>
+
+<p>Prep Time Distribution</p>
+<ResponsiveContainer width="60%" height={300}>
+  <BarChart data={prepTimeData}>
+    <XAxis dataKey="range" />
+    <YAxis />
+    <Tooltip />
+    <Bar dataKey="count" fill="#FED8B1" />
+  </BarChart>
+</ResponsiveContainer>
+</div> 
+
+
+
+ 
 
         <div className="filter-bar">
   <input
@@ -160,7 +210,7 @@ const RecipeDashboard = () => {
 
 
 
-
+     
 
       <div className="dashboard-header">
         <div className="column-title">Recipe Name</div>
@@ -173,6 +223,7 @@ const RecipeDashboard = () => {
         <RecipeCard key={recipe.id} recipe={recipe} />
       ))}
     </div>
+     </div>
   );
 
 }

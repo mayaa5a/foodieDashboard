@@ -9,14 +9,31 @@
   font-style: regular;
 }
 
-.dashboard-header, .dashboard-row {
+.dashboard-header {
   display: grid;
   grid-template-columns: 2fr 1fr 1fr 1fr;
   padding: 0.5rem 0.5rem;
   margin-left: 0.1rem;
   margin-right: 2rem;
   align-items: center;
+  width: 100%;
 }
+
+.dashboard-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  padding: 0.5rem 0.5rem;
+  margin-left: 4rem;
+  margin-right: 2rem;
+  align-items: center;
+  width: 100%;
+}
+.chart-container{
+  margin-left: 25rem;
+  color:black;
+
+}
+
 
 .dashboard-header {
   font-size: 1.2rem;
@@ -25,11 +42,6 @@
   font-optical-sizing: auto;
   font-weight: 600;
   font-style: normal;
-}
-
-.dashboard-row {
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  
 }
 
 .stats-container {
